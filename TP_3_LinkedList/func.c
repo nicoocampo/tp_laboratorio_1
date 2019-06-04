@@ -40,7 +40,7 @@ int pedirEntero(char mensaje[]){
 }
 
 int pedirCadena(char* pCadena,int len, char mensaje[]){
-    char auxCadena[100];
+    char auxCadena[256];
     int retorno=-1;
     if(pCadena!=NULL && len>0){
         do{
@@ -53,7 +53,7 @@ int pedirCadena(char* pCadena,int len, char mensaje[]){
                 retorno=0;
             }
         }while(retorno==0);
-        strcpy(*pCadena, auxCadena);
+        strcpy(pCadena, auxCadena);
     }
     return retorno;
 }

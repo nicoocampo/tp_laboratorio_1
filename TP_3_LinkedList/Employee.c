@@ -4,10 +4,10 @@
 Employee* employee_new(){
     char nombre[256];
     Employee* employee=(Employee*)malloc(sizeof(Employee));
+    pedirCadena(employee->nombre, 256,"Nombre");
     employee->id=pedirEntero("ID");
     employee->sueldo=pedirEntero("sueldo");
     employee->horasTrabajadas=pedirEntero("horas trabajadas");
-    pedirCadena(employee->nombre, 256,"Nombre");
 
     return employee;
 }

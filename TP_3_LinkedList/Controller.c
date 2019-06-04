@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "LinkedList.h"
 #include "Employee.h"
+#include "func.h"
 
 
 /** \brief Carga los datos de los empleados desde el archivo data.csv (modo texto).
@@ -41,7 +42,12 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
  */
 int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
+    int retorno=1;
+    if(pArrayListEmployee!=NULL){
+        ll_add(pArrayListEmployee,employee_new());
+        retorno=1;
+    }
+    return retorno;;
 }
 
 /** \brief Modificar datos de empleado
@@ -53,6 +59,43 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_editEmployee(LinkedList* pArrayListEmployee)
 {
+    if(pArrayListEmployee==NULL)
+        return 0;
+    Employee* aux;
+    int i, id, opcion;
+    id=pedirEntero("ID del trabajador a modificar");
+    for (i=0;i<ll_len(pArrayListEmployee);i++){
+        aux=ll_get(pArrayListEmployee, i);
+        if(aux->id==id){
+            do{
+                printf("\nNombre: %s\nID: %d\nHoras trabajadas: %d\nSueldo: %d\n", aux->nombre, aux->id, aux->horasTrabajadas, aux->sueldo);
+                opcion=menu("\nMenu de opciones:\n1-Cambiar nombre\n2-Cambiar ID\n3- Cambiar horas trabajadas \n4- Cambiar sueldo\n5-Salir");
+                switch(opcion){
+                    case 1:
+
+                        break;
+                    case 2:
+
+                        break;
+                    case 3:
+
+                        break;
+                    case 4:
+
+                        break;
+                    case 5:
+
+                        break;
+                    default:
+
+                        break;
+
+
+
+                }
+            }while(opcion!=5);
+        }
+    }
     return 1;
 }
 
@@ -77,6 +120,14 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_ListEmployee(LinkedList* pArrayListEmployee)
 {
+    if(pArrayListEmployee==NULL)
+        return 0;
+    Employee* aux;
+    int i;
+    for (i=0;i<ll_len(pArrayListEmployee);i++){
+        aux=ll_get(pArrayListEmployee, i);
+        printf("\nNombre: %s\nID: %d\nHoras trabajadas: %d\nSueldo: %d\n", aux->nombre, aux->id, aux->horasTrabajadas, aux->sueldo);
+    }
     return 1;
 }
 

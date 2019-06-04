@@ -24,10 +24,8 @@ int main()
 {
     int option = 0;
     LinkedList* listaEmpleados = ll_newLinkedList();
-
-
-
     do{
+        system("cls");
         switch(option=menu("Menu:\n\n1. Cargar los datos de los empleados desde el archivo data.csv (modo texto).\n2. Cargar los datos de los empleados desde el archivo data.csv (modo binario).\n3. Alta de empleado\n4. Modificar datos de empleado\n5. Baja de empleado\n6. Listar empleados\n7. Ordenar empleados\n8. Guardar los datos de los empleados en el archivo data.csv (modo texto).\n9. Guardar los datos de los empleados en el archivo data.csv (modo binario).\n10. Salir"))
         {
             case 1:
@@ -36,12 +34,18 @@ int main()
             case 2:
                 break;
             case 3:
+                controller_addEmployee(listaEmpleados);
+                printf("Ingresado con exito!");
+                system("pause");
                 break;
             case 4:
                 break;
             case 5:
                 break;
             case 6:
+                system("cls");
+                controller_ListEmployee(listaEmpleados);
+                system("pause");
                 break;
             case 7:
                 break;
