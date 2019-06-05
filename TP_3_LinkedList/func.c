@@ -12,7 +12,6 @@
  */
 int menu(char mensaje[]){
     int opcion;
-    system("cls");
     printf("%s", mensaje);
     opcion=pedirEntero("\n\nElija una opcion valida");
     return opcion;
@@ -40,7 +39,7 @@ int pedirEntero(char mensaje[]){
 }
 
 int pedirCadena(char* pCadena,int len, char mensaje[]){
-    char auxCadena[256];
+    char auxCadena[300];
     int retorno=-1;
     if(pCadena!=NULL && len>0){
         do{

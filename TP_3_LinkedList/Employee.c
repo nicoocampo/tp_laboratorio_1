@@ -8,7 +8,6 @@ Employee* employee_new(){
     employee->id=pedirEntero("ID");
     employee->sueldo=pedirEntero("sueldo");
     employee->horasTrabajadas=pedirEntero("horas trabajadas");
-
     return employee;
 }
 

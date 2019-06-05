@@ -136,3 +136,46 @@
 
 1559650959 c:\users\alumno\desktop\tp_laboratorio_1\tp_3_linkedlist\controller.h
 
+1559693484 source:c:\users\venomsnake\desktop\tp_laboratorio_1\tp_3_linkedlist\controller.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+	"func.h"
+
+1559691427 c:\users\venomsnake\desktop\tp_laboratorio_1\tp_3_linkedlist\linkedlist.h
+
+1559691427 c:\users\venomsnake\desktop\tp_laboratorio_1\tp_3_linkedlist\employee.h
+	<stdio.h>
+	<stdlib.h>
+
+1559691427 c:\users\venomsnake\desktop\tp_laboratorio_1\tp_3_linkedlist\func.h
+	<stdio.h>
+	<stdlib.h>
+
+1559693092 source:c:\users\venomsnake\desktop\tp_laboratorio_1\tp_3_linkedlist\employee.c
+	"Employee.h"
+	"func.h"
+
+1559693495 source:c:\users\venomsnake\desktop\tp_laboratorio_1\tp_3_linkedlist\main.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Employee.h"
+	"func.h"
+
+1559691427 c:\users\venomsnake\desktop\tp_laboratorio_1\tp_3_linkedlist\controller.h
+
+1559691427 source:c:\users\venomsnake\desktop\tp_laboratorio_1\tp_3_linkedlist\parser.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+
+1559692570 source:c:\users\venomsnake\desktop\tp_laboratorio_1\tp_3_linkedlist\func.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"func.h"
+

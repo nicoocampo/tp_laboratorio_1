@@ -68,30 +68,29 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
         aux=ll_get(pArrayListEmployee, i);
         if(aux->id==id){
             do{
-                printf("\nNombre: %s\nID: %d\nHoras trabajadas: %d\nSueldo: %d\n", aux->nombre, aux->id, aux->horasTrabajadas, aux->sueldo);
-                opcion=menu("\nMenu de opciones:\n1-Cambiar nombre\n2-Cambiar ID\n3- Cambiar horas trabajadas \n4- Cambiar sueldo\n5-Salir");
+                system("cls");
+                printf("Nombre: %s\nID: %d\nHoras trabajadas: %d\nSueldo: %d\n", aux->nombre, aux->id, aux->horasTrabajadas, aux->sueldo);
+                opcion=menu("\n\nMenu de opciones:\n1-Cambiar nombre\n2-Cambiar ID\n3- Cambiar horas trabajadas \n4- Cambiar sueldo\n5-Salir");
                 switch(opcion){
                     case 1:
-
+                        pedirCadena(aux->nombre,256,"el nuevo nombre del empleado");
                         break;
                     case 2:
-
+                        aux->id=pedirEntero("el nuevo ID");
                         break;
                     case 3:
-
+                        aux->horasTrabajadas=pedirEntero("las nuevas horas trabajadas");
                         break;
                     case 4:
-
+                        aux->sueldo=pedirEntero("el nuevo sueldo");
                         break;
                     case 5:
-
                         break;
                     default:
-
+                        system("cls");
+                        printf("Ingrese una opcion valida\n\n");
+                        system("pause");
                         break;
-
-
-
                 }
             }while(opcion!=5);
         }
@@ -108,6 +107,17 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_removeEmployee(LinkedList* pArrayListEmployee)
 {
+    if(pArrayListEmployee==NULL)
+        return 0;
+    Employee* aux;
+    int i, id;
+    id=pedirEntero("ID del trabajador a dar de baja");
+    for (i=0;i<ll_len(pArrayListEmployee);i++){
+        aux=ll_get(pArrayListEmployee, i);
+        if(aux->id==id){
+                ll_remove(pArrayListEmployee, i);
+        }
+    }
     return 1;
 }
 

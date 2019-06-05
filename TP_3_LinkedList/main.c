@@ -39,8 +39,10 @@ int main()
                 system("pause");
                 break;
             case 4:
+                controller_editEmployee(listaEmpleados);
                 break;
             case 5:
+                controller_removeEmployee(listaEmpleados);
                 break;
             case 6:
                 system("cls");
