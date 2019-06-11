@@ -93,25 +93,25 @@ static int addNode(LinkedList* this, int nodeIndex,void* pElement)
     Node* newNode;
     if(this!=NULL && nodeIndex>=0 && nodeIndex<=ll_len(this)){
        newNode=(Node*)malloc(sizeof(Node));//creamos el nuevo nodo
-       newNode->pNextNode=NULL;//serranos el valor por default
-       newNode->pElement=pElement;//seteamos el pElement que nos pasaron
-       if(nodeIndex==0 && ll_len(this)==0)//si el LinkedList no tiene ningún nodo
+       newNode->pNextNode=NULL;//seteamos el valor por default
+       newNode->pElement=pElement;//seteamos el pElement que nos pasaron como parametro al nodo creado dinamicamente
+       if(nodeIndex==0 && ll_len(this)==0)//si el LinkedList no tiene ningún nodo, enganchamos el nodo creado dinamicamente a la locomotora
             this->pFirstNode=newNode;
-       else if(nodeIndex==0){//si el linkedlist tiene nodos pero quiero agregar otro en la posición 0
+       else if(nodeIndex==0){//si el linkedlist tiene nodos pero quiero agregar otro en la posición 0, enganchamos el nodo creado dinamicamente a la locomotora y al nodo le enganchamos los demas vagones(el vagon cero pasa a ser el vagon 1)
             aux=getNode(this,0);
             newNode->pNextNode=aux;
             this->pFirstNode=newNode;
        }
-       else if(nodeIndex>0 && ll_len(this)>0){
-            aux=getNode(this,0);
+       else if(nodeIndex>0 && ll_len(this)>0){//agregar un nodo en cualquier posicion del tren, por ejemplo si pasamos como parametro el index 4, conectamos el nuevo nodo al vagon 3, y el que era vagon 4 pasa a ser vagon 5 y se conecta al nuevo nodo
+            aux=getNode(this,nodeIndex-1);
             newNode->pNextNode=aux->pNextNode;
-            aux->pNextNode=newNode
+            aux->pNextNode=newNode;
        }
        this->size++;
+       returnAux=0;
     }
     return returnAux;
 }
-
 /** \brief Permite realizar el test de la funcion addNode la cual es privada
  *
  * \param this LinkedList* Puntero a la lista
@@ -123,10 +123,7 @@ static int addNode(LinkedList* this, int nodeIndex,void* pElement)
  */
 int test_addNode(LinkedList* this, int nodeIndex,void* pElement)
 {
-    if(this!=NULL&&nodeIndex>=0 && nodeIndex<this->size){
         return addNode(this,nodeIndex,pElement);
-    }
-    return 0;
 }
 
 
