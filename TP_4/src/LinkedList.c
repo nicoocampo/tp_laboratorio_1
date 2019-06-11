@@ -91,13 +91,13 @@ static int addNode(LinkedList* this, int nodeIndex,void* pElement)
     int returnAux = -1;
     Node* aux=NULL;
     Node* newNode;
-    if(this!=NULL&&nodeIndex>=0&&nodeIndex<ll_len(this)){
-       newNode=(Node*)malloc(sizeof(Node));
-       newNode->pNextNode=NULL;
-       newNode->pElement=pElement;
-       if(nodeIndex==0 && ll_len(this)==0)
+    if(this!=NULL && nodeIndex>=0 && nodeIndex<=ll_len(this)){
+       newNode=(Node*)malloc(sizeof(Node));//creamos el nuevo nodo
+       newNode->pNextNode=NULL;//serranos el valor por default
+       newNode->pElement=pElement;//seteamos el pElement que nos pasaron
+       if(nodeIndex==0 && ll_len(this)==0)//si el LinkedList no tiene ningún nodo
             this->pFirstNode=newNode;
-       else if(nodeIndex==0){
+       else if(nodeIndex==0){//si el linkedlist tiene nodos pero quiero agregar otro en la posición 0
             aux=getNode(this,0);
             newNode->pNextNode=aux;
             this->pFirstNode=newNode;
