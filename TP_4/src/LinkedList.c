@@ -90,33 +90,24 @@ static int addNode(LinkedList* this, int nodeIndex,void* pElement)
 {
     int returnAux = -1;
     Node* aux=NULL;
-    Node* newNode=(Node*)malloc(sizeof(Node));
-    newNode->pNextNode=NULL;
-    newNode->pElement=pElement;
-    if(this==NULL)
-        return -1;
-    if(this!=NULL&&nodeIndex>=0){
-        if(nodeIndex==0){
-            if(ll_len(this)==0){
-                this->pFirstNode=newNode;
-                this->size++;
-                return returnAux;
-            }
-            else{
-                aux=getNode(this,0);
-                newNode->pNextNode=newNode;
-                this->pFirstNode=newNode;
-                this->size++;
-                return returnAux;
-            }
-        }
-        else if(nodeIndex<ll_len(this)){
-            aux=getNode(this,nodeIndex-1);
+    Node* newNode;
+    if(this!=NULL&&nodeIndex>=0&&nodeIndex<ll_len(this)){
+       newNode=(Node*)malloc(sizeof(Node));
+       newNode->pNextNode=NULL;
+       newNode->pElement=pElement;
+       if(nodeIndex==0 && ll_len(this)==0)
+            this->pFirstNode=newNode;
+       else if(nodeIndex==0){
+            aux=getNode(this,0);
+            newNode->pNextNode=aux;
+            this->pFirstNode=newNode;
+       }
+       else if(nodeIndex>0 && ll_len(this)>0){
+            aux=getNode(this,0);
             newNode->pNextNode=aux->pNextNode;
-            aux->pNextNode=newNode;
-            this->size++;
-            returnAux=0;
-        }
+            aux->pNextNode=newNode
+       }
+       this->size++;
     }
     return returnAux;
 }
