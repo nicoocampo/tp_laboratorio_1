@@ -310,8 +310,10 @@ int ll_isEmpty(LinkedList* this)
 int ll_push(LinkedList* this, int index, void* pElement)
 {
     int returnAux = -1;
-    if(this!=NULL && index>=0 && index<ll_len(this))
-        returnAux=addNode(this, index, pElement);
+    if(this!=NULL){
+        addNode(this,ll_len(this),pElement);
+        returnAux=0;
+    }
     return returnAux;
 }
 
@@ -373,8 +375,18 @@ int ll_contains(LinkedList* this, void* pElement)
 */
 int ll_containsAll(LinkedList* this,LinkedList* this2)
 {
-    int returnAux = -1;
-
+    int returnAux = -1, i;
+    Node* pNodeThis2;
+    if(this!=NULL && this2!=NULL){
+        returnAux=1;
+        for(i=0; i<ll_len(this); i++){
+            pNodeThis2=getNode(this2,i);
+            if(ll_contains(this,pNodeThis2->pElement)==0){
+                returnAux=0;
+                break;
+            }
+        }
+    }
     return returnAux;
 }
 
