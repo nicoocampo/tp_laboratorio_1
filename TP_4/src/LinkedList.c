@@ -310,10 +310,8 @@ int ll_isEmpty(LinkedList* this)
 int ll_push(LinkedList* this, int index, void* pElement)
 {
     int returnAux = -1;
-    if(this!=NULL){
-        addNode(this,ll_len(this),pElement);
-        returnAux=0;
-    }
+    if(this!=NULL)
+        returnAux=addNode(this,index,pElement);
     return returnAux;
 }
 
@@ -438,9 +436,29 @@ LinkedList* ll_clone(LinkedList* this)
  */
 int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
 {
-    int returnAux =-1;
-
+    int returnAux =-1, i, j;
+    Node* pNode;
+    Node* pNodePosterior;
+    Node* aux;
+    if(this!=NULL && pFunc!=NULL && (order==0 || order==1 )){
+        returnAux=0;
+        for(i=0;i<ll_len(this)-1;i++){
+            pNode=getNode(this,i);
+            for(j=i+1; j<ll_len(this);j++){
+                pNodePosterior=getNode(this,j);
+                if(order==1&&pFunc(pNode->pElement,pNodePosterior->pElement)==1){
+                    aux=pNode;
+                    pNode->pElement=pNodePosterior->pElement;
+                    pNodePosterior->pElement=aux->pElement;
+                }
+                if(order==0 && pFunc(pNode->pElement,pNodePosterior->pElement)==-1){
+                    aux=pNode;
+                    pNode->pElement=pNodePosterior->pElement;
+                    pNodePosterior->pElement=aux->pElement;
+                }
+            }
+        }
+    }
     return returnAux;
-
 }
 
