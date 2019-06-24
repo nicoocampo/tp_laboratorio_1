@@ -32,6 +32,7 @@ int main()
                 controller_loadFromText("data.csv",listaEmpleados);
                 break;
             case 2:
+                controller_loadFromBinary("data.csv",listaEmpleados);
                 break;
             case 3:
                 controller_addEmployee(listaEmpleados);
@@ -50,6 +51,8 @@ int main()
                 system("pause");
                 break;
             case 7:
+                system("cls");
+                controller_sortEmployee(listaEmpleados);
                 break;
             case 8:
                 break;
@@ -58,6 +61,6 @@ int main()
             case 10:
                 break;
         }
-    }while(option != 10);
+    }while(option!=10);
     return 0;
 }

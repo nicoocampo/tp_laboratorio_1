@@ -82,3 +82,49 @@ int employee_getSueldo(Employee* this,int* sueldo){
     }
     return retorno;
 }
+
+int employee_compareByName(Employee* empleado1, Employee* empleado2){
+    return stricmp(empleado1->nombre,empleado2->nombre);
+}
+
+int employee_compareById(Employee* empleado1, Employee* empleado2){
+    int retorno;
+    if(empleado1->id>empleado2->id){
+        retorno= 1;
+    }
+    else if(empleado1->id<empleado2->id){
+        retorno= -1;
+    }
+    else{
+        retorno= 0;
+    }
+    return retorno;
+}
+
+int employee_compareBySueldo(Employee* empleado1, Employee* empleado2){
+    int retorno;
+    if( empleado1->sueldo>empleado2->sueldo){
+        retorno= 1;
+    }
+    else if(empleado1->sueldo<empleado2->sueldo){
+        retorno= -1;
+    }
+    else{
+        retorno= 0;
+    }
+    return retorno;
+}
+
+int employee_compareByHorasTrabajadas(Employee* empleado1, Employee* empleado2){
+    int retorno;
+    if(empleado1->horasTrabajadas>empleado2->horasTrabajadas){
+        retorno= 1;
+    }
+    else if(empleado1->horasTrabajadas<empleado2->horasTrabajadas ){
+        retorno= -1;
+    }
+    else{
+        retorno= 0;
+    }
+    return retorno;
+}

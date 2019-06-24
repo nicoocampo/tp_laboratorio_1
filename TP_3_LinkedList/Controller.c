@@ -19,6 +19,9 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
     pArch=fopen("data.csv","r");
     parser_EmployeeFromText(pArch,pArrayListEmployee);
     fclose(pArch);
+    system("cls");
+    printf("Cargado exitosamente!\n\n");
+    system("pause");
     return 1;
 }
 
@@ -31,7 +34,13 @@ int controller_loadFromText(char* path , LinkedList* pArrayListEmployee)
  */
 int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 {
-
+    FILE* pArch;
+    pArch=fopen("data.csv","rb");
+    parser_EmployeeFromBinary(pArch,pArrayListEmployee);
+    fclose(pArch);
+    system("cls");
+    printf("Cargado exitosamente!\n\n");
+    system("pause");
     return 1;
 }
 
@@ -109,6 +118,7 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_removeEmployee(LinkedList* pArrayListEmployee)
 {
+    int opcion=0;
     if(pArrayListEmployee==NULL)
         return 0;
     Employee* aux;
@@ -117,9 +127,23 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
     for (i=0;i<ll_len(pArrayListEmployee);i++){
         aux=ll_get(pArrayListEmployee, i);
         if(aux->id==id){
+            do{
+                system("cls");
+                printf("ID: %d\nNombre: %s\nSueldo: %d\nHoras trabajadas: %d\n\n", aux->id,aux->nombre,aux->sueldo,aux->horasTrabajadas);
+                opcion=menu("1-. Borrar empleado\n2-. Cancelar");
+            }while(opcion<1 || opcion>2);
+            if(opcion==1){
                 ll_remove(pArrayListEmployee, i);
+                printf("\n\nEliminado exitosamente!\n\n");
+                break;
+            }
+            else{
+                printf("\n\nCancelado!\n");
+                break;
+            }
         }
     }
+    system("pause");
     return 1;
 }
 
@@ -150,9 +174,28 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
  * \return int
  *
  */
-int controller_sortEmployee(LinkedList* pArrayListEmployee)
-{
-    return 1;
+int controller_sortEmployee(LinkedList* pArrayListEmployee){
+    int estado= -1;
+    int opcion;
+    if(pArrayListEmployee != NULL){
+            switch(opcion=menu("1-. Ordenar por ID\n2-. Ordenar por nombre\n3-. Ordenar por sueldo\n4-. Ordenar por horas trabajadas\n")){
+                case 1:
+                    ll_sort(pArrayListEmployee, employee_compareById, 1);
+                    break;
+                case 2:
+                    ll_sort(pArrayListEmployee, employee_compareByName, 1);
+                    break;
+                case 3:
+                    ll_sort(pArrayListEmployee, employee_compareBySueldo, 1 );
+                    break;
+                case 4:
+                    ll_sort(pArrayListEmployee, employee_compareByHorasTrabajadas, 1 );
+            }
+            printf("\n\nOrdenado exitosamente!");
+            system("pause");
+            estado= 0;
+    }
+    return estado;
 }
 
 /** \brief Guarda los datos de los empleados en el archivo data.csv (modo texto).

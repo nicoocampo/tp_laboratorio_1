@@ -12,7 +12,7 @@
  */
 int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 {
-    Employee* empleado=(Employee*)malloc(sizeof(Employee));
+    Employee* empleado;
     char name[120], id[120], salary[120],hour[120];
     if(pFile == NULL){
         return -1;
@@ -21,6 +21,7 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
         fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",id ,name ,hour, salary);
         while(!feof(pFile))
         {
+            empleado=(Employee*)malloc(sizeof(Employee));
             fscanf(pFile,"%[^,],%[^,],%[^,],%[^\n]\n",id ,name ,hour, salary);
             employee_setId(empleado,atoi(id));
             employee_setNombre(empleado,name);
@@ -42,23 +43,15 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
 int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee){
     Employee* empleado;
     int verificacion = -1;
-
-    if(pFile != NULL && pArrayListEmployee != NULL)
-    {
-        while(!(feof(pFile)))
-        {
-            empleado=employee_new();
-
-            fread(empleado, sizeof(Employee), 1, pFile);
-            if (feof(pFile))
-            {
-                verificacion = 0;
+    if(pFile != NULL && pArrayListEmployee != NULL){
+        verificacion = 0;
+        while(!(feof(pFile))){
+            empleado=(Employee*)malloc(sizeof(Employee));
+            if(fread(empleado, sizeof(Employee), 1, pFile)==1)
+                ll_add(pArrayListEmployee, empleado);
+            else
                 break;
-            }
-
-            ll_add(pArrayListEmployee, empleado);
         }
     }
-
     return verificacion;
 }
